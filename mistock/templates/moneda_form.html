@@ -1,0 +1,108 @@
+{% extends "base_mistock.html" %}
+{% load helpers %}
+{% block page_content %}
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-fluid px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="dollar-sign"></i></div>
+                            {% if obj %} Editar {% else %} Agregar {% endif %} Moneda 
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid px-4">
+        <div class="card">
+            <div class="card-body">
+				<form class="form-inline" method="POST">
+					{% csrf_token %}
+					<div class="col-md-12" style="display: none">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Id</label>
+						  	<input type="text" name="id" 
+							class="form-control" id="id" value="{% if obj %} {{obj.id}} {% endif %}">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Descripción</label>
+						  	<input type="text" name="descripcion" maxlength="30"
+							class="form-control" id="id_descripcion" value="{% if obj %} {{obj.descripcion}} {% endif %}" autofocus required>
+						</div>
+					</div>
+					<div class="col-md-12">	
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Simbolo de la Moneda</label>
+							<input type="text" name="simbolo" maxlength="3" class="form-control" required id="id_simbolo" value="{% if obj %} {{obj.simbolo}} {% endif %}">
+						</div>
+					</div>	
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Valor de Compras</label>
+							<input type="text" name="compras"class="form-control" required id="id_compras" value="{% if obj %} {{obj.compras }} {% else %} 0 {% endif %}" onfocus="this.select()" onKeyPress="return soloNumeros(event)">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Valor de Ventas</label>
+							<input type="text" name="ventas" class="form-control" required id="id_ventas" value="{% if obj %} {{obj.ventas  }} {% else %} 0 {% endif %}" onfocus="this.select()" onKeyPress="return soloNumeros(event)">
+						</div>
+					</div>
+					<div class="input input-group-sm mb-3">
+						<div class="form-check">
+							{% if obj %} 
+							  {% if obj.maestra %} 
+								<input class="form-check-input" id="maestra" name="maestra" type="checkbox" id="id_maestra" checked>
+							  {% else %} 	
+								<input class="form-check-input" id="maestra" name="maestra" type="checkbox" id="id_maestra">
+							  {% endif %} 	 	
+							{% else %} 	
+								<input class="form-check-input" id="maestra" name="maestra" type="checkbox" id="id_maestra">
+							{% endif %}
+
+					  		<label class="form-check-label"> ¿Moneda Maestra?</label>
+						</div>
+					</div>
+					<div class="dropdown-divider"></div>
+					<button type="submit" class="btn btn-light text-dark"><i class="me-1" data-feather="save"></i> Guardar</button>
+					<a class="btn btn-light text-secundary" href="{% url 'mistock:moneda_list' %}"><i class="me-1" data-feather="grid"></i>Volver</a>
+				</form>	
+			</div>
+		</div>
+	</div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		let select_maestra = document.getElementById('maestra');
+		let select_id = document.getElementById('id');
+		id = select_id.value;
+
+		fetch('/mistock/maestra/').then(function(response){
+			response.json().then(function(data){
+				console.log(data);
+					if (data.idmaestra != 0) {
+						if (data.idmaestra == id){
+							console.log("Registro Editar y es maestra");
+							select_maestra.disabled = false;
+						} 
+						else {
+							console.log("Registro Nuevo/Editar y hay maestra");
+							select_maestra.disabled = true;
+						}
+					} else {
+						console.log("Registro Nuevo y no hay maestra");
+						select_maestra.disabled = false;
+					};
+						
+					
+			});
+		});
+	});
+</script>
+{% endblock page_content %}

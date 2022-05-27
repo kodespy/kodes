@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% load helpers %}
+{% block page_js %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <script src="{% static 'js/scripts.js' %}"></script>            
+{% endblock page_js %}
+{% block navbar%}        
+{% endblock navbar%}        
+{% block page_content %}
+<main class="pb-10">
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary mb-4">
+        <div class="container-xl px-4">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="link"></i></div>
+                            Asociar Empresa
+                        </h1>
+                        <div class="page-header-subtitle">Agregar nueva empresa para usar el sistema Mistock Web.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container px-4 ">
+        <div class="card card-header-actions mx-auto">
+            <div class="card-header">Datos de la Empresa</div>
+            <div class="card-body">
+                <form class="form-inline" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col-md-12">
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="input input-group-sm mb-3">
+                                <label class="form-label">Documento (R.U.C. y/o C.I. N°)</label>
+                                <input type="text" name="documento" maxlength="20"
+                                class="form-control" id="id_documento" value="{% if obj %} {{obj.documento}} {% endif %}" autofocus required>
+                            </div>
+                            <div class="input input-group-sm mb-3">
+                                <label class="form-label">Razón Social</label>
+                                <input type="text" name="razonsocial" maxlength="150"
+                                class="form-control" id="id_razonsocial" value="{% if obj %} {{obj.razonsocial}} {% endif %}" required>
+                            </div>
+                            <div class="input input-group-sm mb-3">
+                                <label class="form-label">País</label>
+                                <input type="text" name="pais" maxlength="50"
+                                class="form-control" id="id_pais" value="{% if obj %} {{obj.pais}} {% endif %}" >
+                            </div>
+                            <div class="input input-group-sm mb-3">
+                                <label class="form-label">Departamento</label>
+                                <input type="text" name="departamento" maxlength="50"
+                                class="form-control" id="id_departamento" value="{% if obj %} {{obj.departamento}} {% endif %}" >
+                            </div>
+                            <div class="input input-group-sm mb-3">
+                                <label class="form-label">Ciudad</label>
+                                <input type="text" name="ciudad" maxlength="50"
+                                class="form-control" id="id_ciudad" value="{% if obj %} {{obj.ciudad}} {% endif %}">
+                            </div>
+                            <div class="input input-group-sm mb-3">
+                                <label class="form-label">Dirección</label>
+                                <textarea type="text" name="direccion" maxlength="200"
+                                class="form-control" id="id_direccion">{% if obj %} {{obj.direccion}} {% endif %}</textarea> 
+                            </div>
+                        </div>    
+                        <div class="col-md-6">
+                              <div class="col-md-12">
+                                <div class="card mb-4 mb-xl-0">
+                                    <div class="card-header">Logo de la Empresa</div>
+                                    <div class="card-body">
+                                        <div class="col-md-12">
+                                            <div class="col-md-2"></div>    
+                                            <div class="col-md-8">
+                                                {% if obj.logo %}
+                                                    <a class="card card-portfolio mb-5" href="{{obj.logo.url}}" target="_blank">
+                                                    <img class="card-img-top" src="{{obj.logo.url}}" />
+                                                    </a>
+                                                {% else %}
+                                                    <a class="card card-portfolio mb-5" href="{{MEDIA_URL}}media/fotos/sinlogo.jpg" target="_blank">
+                                                    <img class="card-img-top" src="{{MEDIA_URL}}/media/fotos/sinlogo.jpg" />
+                                                    </a>
+                                                {% endif %} 
+                                            </div>
+                                            <div class="col-md-12"></div>
+                                        </div>  
+                                        <div class="col-md-12">
+                                            <input type="file" class="form-control-file" id="id_logo" name="logo" accept="image/png, image/jpeg, image/jpe, image/jpg">
+                                            
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       </div> 
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <button type="submit" class="btn btn-light text-dark"><i class="me-1" data-feather="save"></i> Guardar</button>
+                    <a class="btn btn-light text-secundary" href="{% url 'home' %}"><i class="me-1" data-feather="home"></i>Volver</a>
+                </form> 
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+{% block footer %}
+{% endblock footer %}
+

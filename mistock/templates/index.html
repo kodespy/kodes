@@ -1,0 +1,23 @@
+{% extends "base_mistock.html" %}
+{% load static %}
+{% load helpers %}
+{% block page_content %}
+    <header class="page-header-ui page-header-light py-lg-5 bg-light">
+        <div class="page-header-ui-content">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-7">
+                        <h1 class="page-header-ui-title">Bienvenidos {{ user.first_name}} {{ user.last_name}} a Mistock Web!!</h1>
+                        
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block"><img class="img-fluid ps-xl-5" src="{% static 'assets/img/shopping-basket.png' %}" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="svg-border-rounded text-white">
+            <!-- Rounded SVG Border-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+        </div>
+    </header>
+{% endblock %}
+

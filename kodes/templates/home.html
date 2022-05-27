@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load helpers %}
+{% block page_content %}
+<header class="page-header-ui page-header-light py-lg-5 bg-white">
+    <div class="page-header-ui-content">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-7">
+                    <h6 class="page-header-ui-title">Obtenga informaciones útiles fácilmente</h6>
+                    <p class="page-header-ui-text mb-5">Bienvenidos a <b>Kodes Software Developer</b>, desarrollo e implementación de sistemas informáticos a medidas.</p>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block"><img class="img-fluid ps-xl-5" src="{% static 'assets/img/illustrations/browser-stats.svg' %}" /></div>
+            </div>
+        </div>
+    </div>
+    <div class="svg-border-rounded text-light">
+        <!-- Rounded SVG Border-->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+    </div>
+</header>
+<div class="dropdown-divider m-0"></div>
+<section class="bg-light py-10">
+    <div class="container px-5">
+        <div class="row gx-5 text-center">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="icon-stack icon-stack-xl bg-primary text-white mb-4"><i data-feather="layers"></i></div>
+                <h3>Herramientas modernas</h3>
+                <p class="mb-0">Sistemas construidos con lenguaje de programación y framework actuales. Base de datos relacionales y fácil de acceso, ya que esta disponible en las nubes!</p>
+            </div>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="icon-stack icon-stack-xl bg-success text-white mb-4"><i data-feather="smartphone"></i></div>
+                <h3>Diseño receptivo moderno</h3>
+                <p class="mb-0">El interfaz de usuario adaptado a cualquier dispositivos (móviles, computadoras, tables, etc)</p>
+            </div>
+            <div class="col-lg-4">
+                <div class="icon-stack icon-stack-xl bg-danger text-white mb-4"><i data-feather="code"></i></div>
+                <h3>Documentación completa</h3>
+                <p class="mb-0">Todos los sistemas y proyectos están totalmente documentadas paso a paso.</p>
+            </div>
+        </div>
+    </div>
+    <div class="svg-border-rounded text-dark">
+        <!-- Rounded SVG Border-->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+    </div>
+</section>
+{% endblock page_content%}
+
