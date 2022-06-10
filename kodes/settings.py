@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-8$2p)7#x)$08jpfjvhb)aa9g-sra95i(q(e-f3v3oy-4tj&*nr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['kodes.net.py', 'localhost']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'kodesdb',
         'HOST': 'localhost',
         'USER': 'postgres',
-        'PASSWORD': 'cmdsql79',
+        'PASSWORD': '~kodesDB79~',
         'PORT': '5432'
     }
 }
