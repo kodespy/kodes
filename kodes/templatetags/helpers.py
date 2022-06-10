@@ -24,3 +24,6 @@ def formatoNumeroPunto(value):
 def negate(boolean):
     return (not boolean).__str__()
 
+@register.simple_tag()
+def multiplo(qty, unit_price, *args, **kwargs):
+    return qty * unit_price

@@ -1,0 +1,97 @@
+{% extends "base_mistock.html" %}
+{% load helpers %}
+{% block page_content %}
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-fluid px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="truck"></i></div>
+                            Consultar Proveedor
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid px-4">
+        <div class="card">
+            <div class="card-body">
+				<form class="form-inline" method="POST">
+					{% csrf_token %}
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Documento</label>
+						  	<input type="text" name="documento" maxlength="30"
+							class="form-control" id="id_documento" value="{% if obj %} {{obj.documento}} {% endif %}" autofocus required disabled>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Razón Social</label>
+						  	<input type="text" name="documento" 
+							class="form-control" id="id_documento" value="{% if obj %} {{obj.razonsocial}} {% endif %}" autofocus required disabled>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Dirección</label>
+						  	<input type="text" name="documento" 
+							class="form-control" id="id_documento" value="{% if obj %} {{obj.direccion}} {% endif %}" disabled>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Teléfono</label>
+						  	<input type="text" name="documento" 
+							class="form-control" id="id_documento" value="{% if obj %} {{obj.telefono}} {% endif %}" disabled>
+						</div>
+					</div>																	
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Correo</label>
+						  	<input type="text" name="documento" 
+							class="form-control" id="id_documento" value="{% if obj %} {{obj.email}} {% endif %}" disabled>
+						</div>
+					</div>				
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Contacto</label>
+						  	<input type="text" name="documento" 
+							class="form-control" id="id_documento" value="{% if obj %} {{obj.contacto}} {% endif %}" disabled>
+						</div>
+					</div>				
+
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Estado</label>
+							<input type="text" name="ventas" class="form-control" required id="id_ventas" value="{% if obj %} {{obj.estado | yesno:'Activo, Inactivo'}} {% else %} 0 {% endif %}" onfocus="this.select()" disabled>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Fecha de Creación:</label>
+							<input type="text" name="ventas" class="form-control" required id="id_ventas" value="{% if obj %} {{obj.fc | date:'d/m/Y H:i:s' }}  {% else %} 0 {% endif %}" onfocus="this.select()" disabled>
+						</div>
+					</div>					
+					<div class="col-md-12">
+						<div class="input input-group-sm mb-3">
+						  	<label class="form-label">Fecha de Modificación:</label>
+							<input type="text" name="ventas" class="form-control" required id="id_ventas" value="{% if obj %} {{obj.fm | date:'d/m/Y H:i:s' }}  {% else %} 0 {% endif %}" onfocus="this.select()" disabled>
+						</div>
+					</div>					
+					<div class="dropdown-divider"></div>
+					<a class="btn btn-light text-secundary" href="{% url 'mistock:proveedor_list' %}"><i class="me-1" data-feather="grid"></i>Volver</a>
+				</form>	
+			</div>
+		</div>
+	</div>
+</main>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.text_type_number').attr('type', 'number');
+	});
+</script>
+{% endblock page_content %}

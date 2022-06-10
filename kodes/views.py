@@ -13,14 +13,22 @@ import requests
 import json
 import os
 
-from .models import Empresa
+from .models import Empresa, Usuario
 from .forms import EmpresaForm
 
-class Home(generic.TemplateView):
-    template_name = 'home.html'    
+class Home(generic.ListView):
+    model = Empresa
+    template_name = "home.html"
+    context_object_name = "obj"
+    form_class = EmpresaForm
 
-    def __init__(self):
-        print("Inicio......")
+
+
+
+
+    #def __init__(self):
+    #    print("Inicio......")
+    
         #auth_token='2cde7694-b99b-426e-b13a-d7648d7bb48f'
         #auth_token='1gAwwGYR8DEpyTWwyf3HxqvOCK2iIh8j7PvIQOHsrqJ2f61AbBeWTV7FZqKA94hMfb0'
         #hed = {'Authorization': 'Bearer ' + auth_token, 'Accept': 'application/json'}
@@ -52,9 +60,7 @@ class EmpresaNew(generic.CreateView):
     form_class = EmpresaForm
     success_url = reverse_lazy("home")
 
-    def form_valid(self, form):
-        form.instance.uc = self.request.user
-        return super().form_valid(form)
 
-
+    
+            
   

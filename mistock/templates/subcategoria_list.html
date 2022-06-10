@@ -1,0 +1,95 @@
+{% extends "base_mistock.html" %}
+{% load static %}
+{% load helpers %}
+{% block page_content %}
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-fluid px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="grid"></i>
+                            </div> Sub Categorias
+                        </h1>
+                    </div>
+                    <div class="col-12 col-xl-auto mb-3">
+                        <a class="btn btn-light text-dark" href="{% url 'mistock:subcategoria_new' %}"><i class="me-1" data-feather="file-plus"></i>Agregar</a>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main page content-->
+    <div class="container-fluid px-4">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold"> Listado </h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">  
+                <table id="table" class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th class="text-right">Id</th>
+                        <th>Descripción</th>
+                        <th class="text-center">Estado</th>
+                        <th>Creado</th>
+                        <th>Modificado</th>
+                        <th class="all text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    {% for item in obj %}
+                            {% if item.estado %}
+                            <tr>
+                            {% else %}
+                            <tr style="text-decoration:line-through;">
+                            {% endif %}                                 
+                                <td class="text-end">{{ item.id }}</td>
+                                <td>{{ item.descripcion }} -> {{ item.categoria.descripcion }}</td>
+                                <td class="text-center">{{ item.estado | yesno:'Activo, Inactivo' }}</td>
+                                <td>{{ item.fc | date:"d/m/Y H:i:s" }}</td>
+                                <td>{{ item.fm | date:"d/m/Y H:i:s" }}</td>
+                                <td class="text-center">
+                                    <a href="{% url 'mistock:subcategoria_edit' item.id %}" class="btn btn-datatable btn-icon btn-transparent-dark" role="button" data-bs-toggle="tooltip" title="Modificar datos"><i class="far fa-edit"></i></a>
+                                    <a href="{% url 'mistock:subcategoria_ver' item.id %}" class="btn btn-datatable btn-icon btn-transparent-dark" role="button" data-bs-toggle="tooltip" title="Consultar datos"><i data-feather="file-text"></i></a>
+
+                                    {% if item.estado %}
+                                        <button class="btn btn-datatable btn-icon btn-transparent-dark" onclick="return abrir_modal('{% url 'mistock:subcategoriaEstado' item.id False %}')" data-bs-toggle="tooltip" title="Desactivar Registro"><i data-feather="thumbs-down"></i></button>
+                                    {% else %}
+                                         <button class="btn btn-datatable btn-icon btn-transparent-dark" onclick="return abrir_modal('{% url 'mistock:subcategoriaEstado' item.id True %}')" data-bs-toggle="tooltip" title="Activar Registro"><i data-feather="thumbs-up"></i></button>
+                                    {% endif %} 
+                                </td>
+                            </tr>
+                        {% endfor %}                    
+                    </tbody>
+                </table>
+               </div> 
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block js_page%}
+    <link rel="stylesheet" type="text/css" href="{% static '/js/datatables/dataTables.bootstrap5.min.css' %}"/>
+
+    <script type="text/javascript" src="{% static '/js/datatables/jquery.dataTables.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/datatables/dataTables.bootstrap5.min.js' %}"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.table').DataTable( {
+                destroy: true,
+                "language": {
+                    "url": "{% static '/js/datatables/Spanish.json' %}"
+                },
+            }); 
+        });
+    </script>
+
+{% endblock %}
+

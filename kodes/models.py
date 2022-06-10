@@ -47,17 +47,14 @@ class Empresa(models.Model):
         max_length = 250,
         help_text = 'Correo',
         null=True, blank=True
-
     )      
     telefono = models.CharField(
         max_length = 30,
-        help_text = 'Teléfono',
-        null=True, blank=True
+        help_text = 'Teléfono'
     )          
     token = models.CharField(
         max_length = 250,
         help_text = 'Token',
-        null=True, blank=True,
         default='__@'
     )       
     estado = models.IntegerField(
@@ -68,7 +65,6 @@ class Empresa(models.Model):
         help_text = 'Logo',
         upload_to = 'fotos/',
         null = True, blank = True 
-
     )       
     fc = models.DateTimeField(auto_now_add=True)
     fm = models.DateTimeField(auto_now=True)

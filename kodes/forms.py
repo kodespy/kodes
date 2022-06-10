@@ -8,7 +8,8 @@ from .models import Empresa
 class EmpresaForm(forms.ModelForm):
 	class Meta:
 		model = Empresa
-		fields = ['documento', 'razonsocial', 'direccion']
+		fields = ['documento', 'razonsocial', 'direccion', 'correo', 'pais', \
+			'departamento', 'ciudad', 'telefono', 'logo']
 		widget = {'razonsocial': forms.TextInput}
 	
 	def __init__(self, *args,  **kwargs):

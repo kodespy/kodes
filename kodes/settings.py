@@ -67,6 +67,8 @@ TEMPLATES = [
             ],
             'libraries':{
                 'helpers': 'kodes.templatetags.helpers',
+                'calculator': 'kodes.templatetags.calculator',
+                'columns': 'kodes.templatetags.columns',
             
             }
         },

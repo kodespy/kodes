@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load columns %}
 {% load static %}
 {% load helpers %}
 {% block page_content %}
@@ -39,7 +40,72 @@
                 <p class="mb-0">Todos los sistemas y proyectos están totalmente documentadas paso a paso.</p>
             </div>
         </div>
+
+        <div class= "card px-2 mt-5 py-2">
+
+            <div class="row gx-5 justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="mb-5 text-center">
+                                        <div class="display-5 text-primary mb-2">Empresas Asociadas</div>
+                                        <p class="lead mb-0">Empresas reconocidas que utilizan el sistema Mistock Web</p>
+                                    </div>
+                                </div>
+                    
+                    <div class= "card-body">  
+                    <div class="dropdown-divider m-0 pb-2"></div>                          
+                       
+                    <div class="row">
+                        {% for col in obj|columns:3 %}
+                            <div class="col-lg-4">
+                                {% for item in col %}
+                                    <div class="item mb-2">
+                                            <a class="card lift" href="#!">
+                                                
+                                                <div class="card-icon" style="max-height: 300px;">
+                                                    {% if item.logo %}
+                                                        <img class="card-img-top" src="{{item.logo.url}}" style="max-width: 100%;max-height: 100%; display: block;"/>
+                                                    {% else %}    
+                                                        <img class="card-img-top" src="{% static 'sinlogo.jpg' %}" />
+                                                    {% endif %}   
+                                                </div> 
+
+                                                <div class="card-body text-center py-3 mt-2">
+                                                    <h6 class="card-title mb-0">{{item.razonsocial}}</h6>
+                                                    <div class="text-yellow">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                    </div>
+                                                    <div class="small mb-2">(12 Reviews)</div>
+                                                    <div class="small">{{item.ciudad}} - {{item.departamento}} </div>
+                                                </div>
+                                                <div class="card-footer text-center text-xs">
+                                                    <i class="fas fa-store-alt me-1"></i>
+                                                    Opened 2 weeks ago
+                                                </div>
+                                            </a>    
+                                    </div>
+                                {% endfor %}
+
+                            </div><!-- /col-md-4 -->
+                        {% endfor %}
+                    </div><!-- /row -->
+
+
+                </div>    
+            </div>        
+
+
     </div>
+
+
+
+
+
+
+
     <div class="svg-border-rounded text-dark">
         <!-- Rounded SVG Border-->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>

@@ -1,0 +1,211 @@
+{% extends "base_mistock.html" %}
+{% load helpers %}
+{% load static %}
+{% load l10n %}
+{% block page_content %}
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-fluid px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="package"></i></div>
+                            {% if obj %} Editar {% else %} Agregar {% endif %} Producto
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid px-4">
+        <div class="card">
+            <div class="card-body">
+				<form class="form-inline" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="row">
+						<small class="text-danger">
+							{% if form.errors %}
+								{% for field in form %}
+									{% if field.errors %}
+										{% for error in field.errors %}
+											{{ error | escape}}
+										{% endfor %}
+									{% endif %}
+								{% endfor %}
+								{% if form.non_field_errors %}
+									{% for error in form.non_field_errors %}
+										{{ error | escape}}
+									{% endfor %}
+								{% endif %}
+							{% endif %}    
+						</small> 
+						<div class="col-md-6">
+							<div class="card mb-4 mb-xl-0">
+								<div class="card-header">Datos del Producto</div>
+                                <div class="card-body">
+									<div class="col-md-6">	
+										<div class="input input-group-sm mb-3">
+											<label class="form-label">Código de Barra</label>
+											<input type="text" name="codigo_barra" maxlength="50" class="form-control" required id="id_codigo_barra"  value="{% if obj %} {{obj.codigo_barra}} {% endif %}" placeholder="Código de Barra del Producto" autofocus required>
+										</div>
+									</div>
+									<div class="col-md-12">		
+										<div class="input input-group-sm mb-3">
+											<label class="form-label">Descripción</label>
+											<input type="text" name="descripcion" maxlength="200"
+											class="form-control" required id="id_descripcion" placeholder="Descripción del Producto" value="{% if obj %} {{obj.descripcion}} {% endif %}">
+										</div>
+									</div>
+									<div class="col-md-12">		
+										<div class="input input-group-sm mb-3">
+											<label class="form-label">Marca</label>
+											{{form.marca}}
+										</div>
+									</div>	
+									<div class="col-md-12">	
+										<div class="input input-group-sm mb-3">
+											<label class="form-label">Sub-Categoria</label>
+											{{form.subcategoria}}
+										</div>	
+									</div>
+									<div class="col-md-12">	
+										<div class="input input-group-sm mb-3">
+											<label class="form-label">Proveedor</label>
+											{{form.proveedor}}
+										</div>	
+									</div>
+									<div class="row">	
+										<div class="col-md-6">	
+											<div class="input input-group-sm mb-3">
+												<label class="form-label">Unidad de Medida</label>
+												<input type="text" name="unidad" maxlength="3"
+												class="form-control" required id="id_unidad" placeholder="Unidad de Médida" value="{% if obj %} {{obj.unidad}} {% endif %}">
+											</div>	
+										</div>											
+										<div class="col-md-6">	
+
+												<div class="input input-group-sm mb-3">
+													<label class="form-label">Existencia Inicial</label>
+													{{form.existencia_inicial }}
+												</div>	
+
+										</div>
+									</div>	
+									<div class="row">
+										<div class="col-md-6">	
+											<div class="input input-group-sm mb-3">
+												<label class="form-label">Moneda</label>
+												{{form.moneda}}
+											</div>	
+										</div>	
+										<div class="col-md-6">	
+											<div class="input input-group-sm mb-3">
+												<label class="form-label">% Valor de Iva </label>
+												{{form.iva_valor}}
+											</div>	
+										</div>										
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="input input-group-sm mb-3">
+												<label class="form-label">Precio de Costo</label>
+												{{form.precio_costo}}
+											</div>	
+										</div>
+										<div class="col-md-6">
+											<div class="input input-group-sm mb-3">
+												<label class="form-label">Precio de Ventas</label>
+												{{form.precio_venta}}
+												<!-- <input type="text" name="precio_venta" 
+												class="form-control" required id="id_precio_venta" placeholder="Precio de Venta" value="{% if obj %} {{obj.precio_venta }} {% endif %}" onKeyPress="return soloNumeros(event)"> -->
+											</div>	
+										</div>
+									</div>	
+									<div class="row">
+										<div class="col-md-6">
+											<div class="input input-group-sm mb-3">
+												<label class="form-label">Descuentos % Máximo</label>
+												{{form.descuento_maximo}}
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="input input-group-sm mb-3">
+												<label class="form-label">Incremento % a Créditos</label>
+												{{form.incremento_precio_credito}}
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input input-group-sm mb-3">
+						<div class="form-check">
+							{% if obj %} 
+							  {% if obj.servicio %} 
+								<input class="form-check-input"  name="servicio" type="checkbox" id="id_servicio" checked>
+							  {% else %} 	
+								<input class="form-check-input" name="servicio" type="checkbox" id="id_servicio">
+							  {% endif %} 	 	
+							{% else %} 	
+								<input class="form-check-input" name="servicio" type="checkbox" id="id_servicio">
+							{% endif %}
+
+					  		<label class="form-check-label"> ¿Es un Servicio sin Stock?</label>
+						</div>
+					</div>
+
+									</div>		
+								</div>
+							</div>
+						</div>	
+						<div class="col-md-6">
+							<div class="col-md-12">
+                                <div class="card mb-4 mb-xl-0">
+                                    <div class="card-header">Imagen del Producto</div>
+                                    <div class="card-body">
+                                        <div class="col-md-12">
+                                        	<div class="col-md-2"></div>	
+	                                        <div class="col-md-8">
+			                                    
+	                                        	{% if obj.imagen %}
+			                                    	<a class="card card-portfolio mb-5" href="{{obj.imagen.url}}" target="_blank">
+			                                        <img class="card-img-top" src="{{obj.imagen.url}}" />
+			                                    	</a>
+			                                    {% else %}
+			                                    	<a class="card card-portfolio mb-5" href="{% static 'sinlogo.jpg' %}" target="_blank">
+			                                        <img class="card-img-top" src="{% static 'sinlogo.jpg' %}" />
+			                                    	</a>
+
+			                                    {% endif %}	
+			                                </div>
+			                                <div class="col-md-12"></div>
+                                       	</div>	
+                                       	<div class="col-md-12">
+	                                        <input type="file" class="form-control-file" id="id_imagen" name="imagen" accept="image/png, image/jpeg, image/jpe">
+	                                    	
+	                                    	<div class="dropdown-divider"></div>
+	                                       	<div class="input input-group-sm mb-3">
+												<label class="form-label">Detalle del Producto</label>
+												<textarea type="text" name="detalle" class="form-control"  id="id_detalle" placeholder="Detalle del producto" rows='13' maxlength="250" value="">{% if obj %} {{obj.detalle}} {% endif %}</textarea>
+											</div>
+										</div>	
+                                    </div>
+                                </div>
+							</div>	
+						</div>
+					</div>	
+					<div class="dropdown-divider"></div>
+					<button type="submit" class="btn btn-light text-dark"><i class="me-1" data-feather="save"></i> Guardar</button>
+					<a class="btn btn-light text-secundary" href="{% url 'mistock:producto_list' %}"><i class="me-1" data-feather="grid"></i>Volver</a>
+				</form>	
+			</div>
+		</div>
+	</div>
+</main>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.text_type_number').attr('type', 'number');
+	});
+</script>
+{% endblock page_content %}
+
+

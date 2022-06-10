@@ -3,7 +3,8 @@
 {% load helpers %}
 {% block page_content %}
 <main>
-    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4"> 
+    <!-- <header class="page-header page-header-dark bg-gradient-primary-to-secondary mb-4">     -->
         <div class="container-fluid px-4">
             <div class="page-header-content">
                 <div class="row align-items-center justify-content-between pt-3">
@@ -21,7 +22,7 @@
         </div>
     </header>
     <!-- Main page content-->
-    <div class="container-fluid px-4">
+    <div class="container-fluid px-3">
         <div class="card">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold"> Listado </h6>
@@ -75,19 +76,23 @@
 {% endblock %}
 
 {% block js_page%}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/js/datatables/dataTables.bootstrap5.min.css' %}"/>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{% static '/js/datatables/jquery.dataTables.min.js' %}"></script>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/datatables/dataTables.bootstrap5.min.js' %}"></script>
+
+
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('.table').DataTable( {
                 destroy: true,
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                    "url": "{% static '/js/datatables/Spanish.json' %}"
                 },
             }); 
         });
     </script>
+
 {% endblock %}
