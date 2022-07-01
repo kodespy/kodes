@@ -1,0 +1,32 @@
+<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-content">
+		{% if obj.estado  %}
+			<form class="form-inline" method="POST" action="{% url 'mistock:categoriaEstado' obj.id False %}">
+		{% else  %}
+			<form class="form-inline" method="POST" action="{% url 'mistock:categoriaEstado' obj.id True %}">
+		{% endif %}		
+		{% csrf_token %}
+	      	<div class="modal-header">
+	      		{% if obj.estado  %}
+	        		<h5 class="modal-title text-danger" >¿Desea cambiar el ESTADO ?</h5>
+	        	{% else  %}
+	        		<h5 class="modal-title text-success" >¿Desea cambiar el ESTADO ?</h5>
+	        	{% endif %}			
+	      	</div>
+		    <div class="modal-body">
+	    		<p class="card-text">Id           : {{obj.id}}  </p>
+				<p class="card-text">Descripción  : {{obj.descripcion}}   </p>
+				<p class="card-text">Creado el    : {{obj.fc}}   </p>
+				<p class="card-text">Modificado el: {{obj.fm}}   </p>
+	    	</div>
+	    	<div class="modal-footer">
+	    		<button type="button" class="btn btn-teal mr-2"   onclick="return  cerrar_modal()"><i data-feather="heart"></i>Cerrar</button>
+	    		{% if obj.estado  %}
+	    			<button type="submit" class="btn btn-pink text-white" id="btnEstado"> Desactivar</button>
+	    		{% else  %}
+	    			<button type="submit" class="btn btn-green text-white" id="btnEstado"> Activar</button>
+	    		{% endif %}		
+	    	</div>	
+		</form>	
+	</div>	
+</div>	
