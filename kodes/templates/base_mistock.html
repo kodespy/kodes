@@ -13,6 +13,12 @@
     <link rel="icon" type="image/x-icon" href="{% static 'assets/img/logom.png' %}" />
     <script data-search-pseudo-elements defer src="{% static 'js/all.min.js' %}" crossorigin="anonymous"></script> 
     <script src="{% static 'js/feather.min.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/kodes.js' %}"></script>
+
+
 </head>
 {% endblock %}
 <body class="nav-fixed">
@@ -187,14 +193,14 @@
         {% block login %} {% endblock login %}
 
         <div class="modal face" id="popup"></div> 
-        <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
 
 
-        <script src="{% static 'js/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
-        <script src="{% static 'js/scripts.js' %}"></script>
-        <script src="{% static 'js/kodes.js' %}"></script>
+        {% block js_page %} 
 
-        {% block js_page %} {% endblock js_page %}
+
+
+
+        {% endblock js_page %}
         {% block control_modal %} 
         <script type="text/javascript">
             function abrir_modal(url)

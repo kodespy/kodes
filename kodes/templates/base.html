@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Kodes Py</title>
+    <title>Kodes SD</title>
     <link rel="icon" type="image/x-icon" href="{% static 'assets/img/shopping-basket.png' %}"/>
     <script data-search-pseudo-elements defer src="{% static 'js/all.min.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'js/feather.min.js' %}" crossorigin="anonymous"></script>
+    <link href="{% static 'css1/styles.css' %}" rel="stylesheet" />
+    <script src="{% static 'js1/scripts.js' %}"></script>            
 </head>
 {% endblock head %}
 <body>
@@ -89,7 +91,7 @@
                     <div class="row gx-5">
                         <div class="col-lg-12">
                             <div class="footer-brand">Kodes SD</div>
-                            <div class="mb-1">Copyright &copy; Carlos Martínez 2022</div>
+                            <div class="mb-1">Copyright &copy; Kodes 2022</div>
                             <div class="text-center">
                                 <a class="icon-list-social-link" href="#!"><i class="fab fa-instagram"></i></a>
                                 <a class="icon-list-social-link" href="#!"><i class="fab fa-facebook"></i></a>
@@ -106,8 +108,7 @@
     {% block login %} {% endblock login %}
     <script src="{% static 'js/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
     {% block page_js %}
-    <link href="{% static 'css1/styles.css' %}" rel="stylesheet" />
-    <script src="{% static 'js1/scripts.js' %}"></script>            
+
     {% endblock page_js %}
 </body>
 </html>

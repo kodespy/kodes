@@ -252,7 +252,8 @@ class Compras(ClaseModelo):
 		super(Compras, self).save()
 
 	class Meta:
-		verbose_name_plural = "Compras"	
+		verbose_name_plural = "Compras"
+		unique_together=('factura_numero', 'proveedor_id', 'uc')
 
 
 class ComprasDetalle(ClaseModelo):

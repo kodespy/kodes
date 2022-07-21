@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-8$2p)7#x)$08jpfjvhb)aa9g-sra95i(q(e-f3v3oy-4tj&*nr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['kodes.net.py', 'localhost']
+ALLOWED_HOSTS = ['kodes.net.py', 'localhost', '*']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'kodes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['kodes/templates'],
+        'DIRS': ['kodes/templates', 'mistock/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +87,8 @@ DATABASES = {
         'NAME': 'kodesdb',
         'HOST': 'localhost',
         'USER': 'postgres',
-        'PASSWORD': '~kodesDB79~',
+#        'PASSWORD': '~kodesDB79~',
+        'PASSWORD': 'cmdsql79',
         'PORT': '5432'
     }
 }
@@ -132,9 +133,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'kodes/static')
-]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'kodes/static')
+#]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

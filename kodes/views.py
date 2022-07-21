@@ -26,8 +26,11 @@ class Home(generic.ListView):
 
 
 
-    #def __init__(self):
-    #    print("Inicio......")
+    def __init__(self):
+        #u = Usuario.objects.get(username__exact='carlosmartinez')
+        #u.set_password("kodes79@")
+        #u.save()
+        print("Inicio......")
     
         #auth_token='2cde7694-b99b-426e-b13a-d7648d7bb48f'
         #auth_token='1gAwwGYR8DEpyTWwyf3HxqvOCK2iIh8j7PvIQOHsrqJ2f61AbBeWTV7FZqKA94hMfb0'
